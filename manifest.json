@@ -2,7 +2,7 @@
   "name": "CPALexicon",
   "short_name": "CPALexicon",
   "description": "Accounting Dictionary for TSU JPIA.",
-  "start_url": "./glossary.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

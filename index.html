@@ -3,14 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=./glossary.html" />
-  <link rel="canonical" href="./glossary.html" />
   <title>CPALexicon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.0.0/dist/tabler-icons.min.css"
+  />
+
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./icon.svg" />
+  <meta name="theme-color" content="#0f1c2e" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <p>Redirecting to the glossary...</p>
+  <div class="banner">
+    <img src="./icon.svg" alt="CPALexicon Banner" />
+  </div>
+
+  <div class="mob-bar">
+    <div class="mob-sw">
+      <i class="ti ti-search" aria-hidden="true"></i>
+      <input type="text" id="mob-search" placeholder="Search terms..." autocomplete="off" />
+      <div class="suggestions" id="mob-search-suggestions" aria-live="polite"></div>
+    </div>
+    <button class="mob-filter-btn" onclick="openDrawer()">
+      <i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Filter
+    </button>
+  </div>
+
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Close"><i class="ti ti-x"></i></button>
+    <div id="drawer-content"></div>
+  </div>
+
+  <div class="page">
+    <aside class="sidebar">
+      <div class="sidebar-card" id="sidebar-inner"></div>
+    </aside>
+    <main class="content">
+      <div class="content-toolbar">
+        <p class="stats-text" id="stats" aria-live="polite"></p>
+        <select class="sort-select" id="sort-select" onchange="render()">
+          <option value="az">A &rarr; Z</option>
+          <option value="za">Z &rarr; A</option>
+          <option value="cat">By category</option>
+        </select>
+      </div>
+      <div class="terms-list" id="terms-list" role="list"></div>
+    </main>
+  </div>
+
+  <footer>TSU JPIA |&nbsp; Illyrthion Federation Year 2026&ndash;2027</footer>
+
+  <script src="./terms-data.js"></script>
+  <script src="./terms.js"></script>
   <script>
-    window.location.replace('./glossary.html');
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./service-worker.js').catch(function (err) {
+          console.warn('Service worker registration failed:', err);
+        });
+      });
+    }
   </script>
 </body>
 </html>

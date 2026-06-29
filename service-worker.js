@@ -1,6 +1,7 @@
 const CACHE_NAME = 'cpalexicon-v2';
 const ASSETS = [
   './',
+  './index.html',
   './glossary.html',
   './style.css',
   './terms.js',
