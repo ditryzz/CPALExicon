@@ -172,4 +172,6 @@
     @media(min-width:701px){
       .mob-bar{display:none}
       .drawer,.drawer-overlay{display:none!important}
+      /* Show the top of the banner image on wider screens to avoid cropping important header content */
+      .banner img{object-position:top center}
     }
