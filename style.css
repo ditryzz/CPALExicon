@@ -175,3 +175,11 @@
       /* Show the top of the banner image on wider screens to avoid cropping important header content */
       .banner img{object-position:top center}
     }
+
+    /* Larger desktop screens: increase banner height and ensure top aligns */
+    @media(min-width:1200px){
+      .banner{
+        height:min(40vh,360px);
+      }
+      .banner img{object-position:top center}
+    }
