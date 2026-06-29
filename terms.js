@@ -20,7 +20,7 @@ function slugify(text){
 function countFor(c){ return c==='All'?allTerms.length:allTerms.filter(function(t){return t.category===c}).length; }
  
 function sidebarHTML(showSearch){
-  var html = '<p class="org-tag">TSU JPIA | Illitrythion Federation 2026-2027</p><p class="sidebar-title">CPALexicon</p>';
+  var html = '<p class="org-tag">TSU JPIA | Illyrthion Federation 2026-2027</p><p class="sidebar-title">CPALexicon</p>';
   if(showSearch){
     html += '<div class="search-wrap"><i class="ti ti-search" aria-hidden="true"></i>';
     html += '<input type="text" id="search" class="search-input" placeholder="Search terms..." autocomplete="off" oninput="render(); updateSearchSuggestions(this.value)" />';

@@ -27,6 +27,8 @@
     object-position:center;
 }
 
+.banner{position:relative;z-index:0;margin-bottom:1rem}
+
 .install-btn{
     position:fixed;
     top:.8rem;
@@ -49,14 +51,14 @@
 .install-btn[hidden]{display:none}
 
     /* PAGE */
-    .page{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem;display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:1.5rem;align-items:start}
+    .page{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem;display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:1.5rem;align-items:start;margin-top:0}
     .content{min-width:0;align-self:start}
     .content-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:1rem;flex-wrap:wrap}
     .stats-text{font-size:13px;color:var(--ink-muted)}
     .sort-select{font-size:12px;font-family:var(--font-b);padding:5px 10px;border:1px solid var(--border-mid);border-radius:var(--r);background:var(--white);color:var(--ink-mid);cursor:pointer;outline:none}
 
     /* SIDEBAR */
-    .sidebar{position:sticky;top:1rem}
+    .sidebar{position:sticky;top:1rem;align-self:start;z-index:1}
     .sidebar-card{background:var(--navy);border-radius:var(--rl);padding:1.25rem;color:#fff}
     .org-tag{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:3px}
     .sidebar-title{font-family:var(--font-d);font-size:17px;color:#fff;margin-bottom:1rem;line-height:1.3}
