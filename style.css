@@ -49,8 +49,8 @@
 .install-btn[hidden]{display:none}
 
     /* PAGE */
-    .page{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem;display:grid;grid-template-columns:260px 1fr;gap:1.5rem;align-items:start}
-    .content{min-width:0}
+    .page{max-width:1100px;margin:0 auto;padding:1.5rem 1rem 3rem;display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:1.5rem;align-items:start}
+    .content{min-width:0;align-self:start}
     .content-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:1rem;flex-wrap:wrap}
     .stats-text{font-size:13px;color:var(--ink-muted)}
     .sort-select{font-size:12px;font-family:var(--font-b);padding:5px 10px;border:1px solid var(--border-mid);border-radius:var(--r);background:var(--white);color:var(--ink-mid);cursor:pointer;outline:none}
@@ -106,10 +106,10 @@
     .term-card.expanded{border-color:#b5cef4;box-shadow:0 2px 16px rgba(26,79,160,.08)}
     .term-header{display:flex;align-items:center;gap:12px;padding:.9rem 1.1rem;cursor:pointer;user-select:none}
     .term-initial{width:36px;height:36px;border-radius:8px;background:var(--navy);color:var(--gold);font-family:var(--font-d);font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1}
-    .term-info{flex:1;min-width:0}
-    .term-name{font-size:15px;font-weight:600;color:var(--ink);line-height:1.3}
+    .term-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+    .term-name{font-size:15px;font-weight:600;color:var(--ink);line-height:1.3;display:block}
     .term-snippet{font-size:12px;color:var(--ink-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .term-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .term-right{display:flex;align-items:center;gap:8px;flex-shrink:0;align-self:center}
     .badge{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;border:1px solid transparent}
     .badge-auditing{background:var(--finance-bg);color:var(--finance-text);border-color:var(--finance-bdr)}
     .badge-financial-accounting-and-reporting{background:var(--legal-bg);color:var(--legal-text);border-color:var(--legal-bdr)}
