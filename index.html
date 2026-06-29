@@ -90,9 +90,6 @@
     });
 
     if (installButton) {
-      // Show install button on desktop so users can trigger install or get instructions
-      if (window.innerWidth > 700) installButton.hidden = false;
-
       installButton.addEventListener('click', async function () {
         if (deferredPrompt) {
           installButton.disabled = true;
@@ -104,20 +101,21 @@
           deferredPrompt = null;
           installButton.hidden = true;
         } else {
-          // Fallback: show manual install instructions for desktop browsers
-          var hint = document.getElementById('install-hint');
-          var hintText = document.getElementById('install-hint-text');
-          if (hint && hintText) {
-            // Detect some common browsers for slightly tailored text
-            var ua = navigator.userAgent.toLowerCase();
-            if (ua.indexOf('chrome') >= 0 || ua.indexOf('edg') >= 0) {
-              hintText.textContent = 'Open your browser menu (⋯) and choose "Install CPALexicon" or "Install app".';
-            } else if (ua.indexOf('firefox') >= 0) {
-              hintText.textContent = 'Firefox does not support automatic install prompts on desktop; use "Install" from the browser menu or pin the site to your OS.';
-            } else {
-              hintText.textContent = 'Use your browser menu and choose "Install" or "Add to desktop" to install this app.';
+          // Fallback: only show manual install instructions on mobile
+          if (window.innerWidth <= 700) {
+            var hint = document.getElementById('install-hint');
+            var hintText = document.getElementById('install-hint-text');
+            if (hint && hintText) {
+              var ua = navigator.userAgent.toLowerCase();
+              if (ua.indexOf('chrome') >= 0 || ua.indexOf('edg') >= 0) {
+                hintText.textContent = 'Open your browser menu (⋯) and choose "Install CPALexicon" or "Install app".';
+              } else if (ua.indexOf('firefox') >= 0) {
+                hintText.textContent = 'Firefox does not support automatic install prompts on desktop; use "Install" from the browser menu or pin the site to your OS.';
+              } else {
+                hintText.textContent = 'Use your browser menu and choose "Install" or "Add to desktop" to install this app.';
+              }
+              hint.hidden = false;
             }
-            hint.hidden = false;
           }
         }
       });

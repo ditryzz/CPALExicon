@@ -159,9 +159,9 @@
       .sidebar{display:none}
       .mob-bar{display:flex}
       .page{grid-template-columns:1fr;padding:.75rem .75rem 3rem}
-      .banner{height:clamp(100px,25vw,150px);background:var(--navy)}
-      /* Avoid 1px/line gap under banner image on some mobile browsers */
-      .banner img{display:block;width:100%;height:102%;object-fit:cover;object-position:top center;transform:translateZ(0);margin-bottom:-2px}
+      .banner{height:clamp(100px,25vw,150px);background:var(--navy);background-repeat:no-repeat;background-size:cover;background-position:top center;background-image:url('./TSU_JPIA_ACADS.png')}
+      /* Use CSS background on mobile to avoid a 1px/line gap under the img element */
+      .banner img{display:none}
       .install-btn{top:auto;bottom:.85rem;right:.85rem;padding:.72rem .95rem}
       .term-header{display:flex;align-items:flex-start;flex-wrap:wrap;gap:8px;padding:.8rem .9rem}
       .term-initial{width:32px;height:32px;font-size:16px}
