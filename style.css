@@ -386,12 +386,12 @@
       .banner img{position:static;inset:auto;width:100%;height:auto;display:block;object-fit:contain;border-radius:16px}
 
       /* Term cards — clean, matching desktop */
-      .term-header{display:flex;align-items:center;gap:10px;padding:.75rem .9rem;flex-wrap:wrap}
+      .term-header{display:flex;align-items:center;gap:10px;padding:.75rem .9rem;flex-wrap:nowrap}
       .term-initial{width:34px;height:34px;font-size:16px;flex-shrink:0}
       .term-info{flex:1 1 auto;min-width:0}
       .term-name{font-size:14px;overflow-wrap:anywhere;word-break:break-word}
       .term-snippet{display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .term-right{display:flex;align-items:center;gap:6px;flex:0 0 100%;justify-content:flex-end;margin-left:0;padding-left:44px;margin-top:2px}
+      .term-right{display:flex;align-items:center;gap:6px;flex-shrink:0;margin-left:auto;padding-left:6px}
       .term-body{padding-left:.9rem;padding-right:.9rem}
       .badge{font-size:10px;padding:3px 7px;white-space:nowrap}
       .install-btn{top:auto;bottom:.85rem;right:.85rem;padding:.72rem .95rem}

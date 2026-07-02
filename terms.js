@@ -10,6 +10,11 @@ var DOTS = {
   Tax: 'dot-tax',
   'Latin Maxims': 'dot-latin'
 };
+var BADGE_LABEL = {
+  'Financial Accounting and Reporting': 'FAR',
+  'Management Accounting and Control': 'MAS'
+};
+function badgeLabel(category){ return BADGE_LABEL[category] || category; }
  
 var currentSuggestions = [];
 var currentSuggestionIndex = -1;
@@ -297,7 +302,7 @@ function render(){
       '<div class="term-initial" aria-hidden="true">'+t.term.charAt(0)+'</div>'+
       '<div class="term-info"><div class="term-name">'+hl(t.term,q)+'</div>'+
       '<div class="term-snippet">'+(isOpen?'':hl(snippet,q))+'</div></div>'+
-      '<div class="term-right"><span class="badge '+('badge-'+slugify(t.category))+'">'+t.category+'</span>'+ 
+      '<div class="term-right"><span class="badge '+('badge-'+slugify(t.category))+'">'+badgeLabel(t.category)+'</span>'+ 
       '<i class="ti ti-chevron-down chevron '+(isOpen?'open':'')+'" aria-hidden="true"></i></div></div>'+
       '<div class="term-body '+(isOpen?'show':'')+'"><hr class="term-divider"/>'+
       '<p class="definition">'+hl(t.definition,q)+'</p>'+      
