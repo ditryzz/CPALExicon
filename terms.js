@@ -20,7 +20,7 @@ function slugify(text){
 
 function countFor(c){ return c==='All'?allTerms.length:allTerms.filter(function(t){return t.category===c}).length; }
  
-function sidebarHTML(showSearch){
+function sidebarHTML(showSearch, includeThemeToggle){
   var html = '<p class="org-tag">TSU JPIA | Illyrthion Federation Academic Year 2026-2027</p><p class="sidebar-title">CPALexicon</p>';
   if(showSearch){
     html += '<div class="search-wrap"><i class="ti ti-search" aria-hidden="true"></i>';
@@ -49,6 +49,14 @@ function sidebarHTML(showSearch){
   html += '</button>';
   html += '</div>';
   html += '<hr class="sidebar-divider"/>';
+  if(includeThemeToggle){
+    html += '<div class="sidebar-theme-block drawer-theme-block">';
+    html += '<p class="section-label theme-section-label">Theme</p>';
+    html += '<button type="button" class="theme-toggle sidebar-theme-toggle drawer-theme-toggle" aria-label="Toggle dark mode">';
+    html += '<i class="ti ti-moon" aria-hidden="true"></i><span class="theme-label">Dark mode</span>';
+    html += '</button>';
+    html += '</div>';
+  }
   return html;
 }
 
@@ -110,8 +118,8 @@ function closeCitationsModal(){
 }
  
 function renderSidebars(){
-  document.getElementById('sidebar-inner').innerHTML = sidebarHTML(true);
-  document.getElementById('drawer-content').innerHTML = sidebarHTML(false);
+  document.getElementById('sidebar-inner').innerHTML = sidebarHTML(true, false);
+  document.getElementById('drawer-content').innerHTML = sidebarHTML(false, true);
   attachSearchHandlers();
   if(typeof attachThemeHandlers === 'function') attachThemeHandlers();
   if(typeof updateThemeButtons === 'function') updateThemeButtons(document.body.classList.contains('dark') ? 'dark' : 'light');

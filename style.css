@@ -344,8 +344,6 @@
     .mob-sw .suggestions{position:absolute;left:0;top:calc(100% + 6px);width:100%;box-sizing:border-box;border-radius:var(--r);box-shadow:0 14px 40px rgba(15,28,46,.18);z-index:10;display:none;max-height:220px;overflow:auto;padding:5px 0}
     .mob-filter-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);color:#fff;padding:9px 13px;font-size:13px;font-family:var(--font-b);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;font-weight:600;transition:background var(--tr)}
     .mob-filter-btn:hover{background:rgba(255,255,255,.16)}
-    .mob-theme-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);color:#fff;padding:9px 11px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--tr),color var(--tr);flex-shrink:0}
-    .mob-theme-btn:hover{background:rgba(201,168,76,.25);border-color:rgba(201,168,76,.6);color:var(--gold)}
 
     /* DRAWER */
     .drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;backdrop-filter:blur(2px)}

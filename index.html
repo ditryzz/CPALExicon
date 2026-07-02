@@ -42,9 +42,6 @@
       <input type="text" id="mob-search" placeholder="Search terms..." autocomplete="off" />
       <div class="suggestions" id="mob-search-suggestions" aria-live="polite"></div>
     </div>
-    <button class="mob-theme-btn" id="mob-theme-btn" onclick="setTheme(document.body.classList.contains('dark') ? 'light' : 'dark')" aria-label="Toggle dark mode">
-      <i class="ti ti-moon" aria-hidden="true"></i>
-    </button>
     <button class="mob-filter-btn" onclick="openDrawer()">
       <i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Filter
     </button>
@@ -149,8 +146,8 @@
 
     const storedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const defaultTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-    const sidebarThemeToggle = document.getElementById('sidebar-theme-toggle');
+    const isMobileViewport = window.innerWidth <= 700;
+    const defaultTheme = storedTheme || (isMobileViewport ? 'dark' : (systemPrefersDark ? 'dark' : 'light'));
 
     function getThemeToggles() {
       return document.querySelectorAll('.theme-toggle');
@@ -165,13 +162,6 @@
           button.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
         }
       });
-      var mobBtn = document.getElementById('mob-theme-btn');
-      if (mobBtn) {
-        mobBtn.innerHTML = theme === 'dark'
-          ? '<i class="ti ti-sun" aria-hidden="true"></i>'
-          : '<i class="ti ti-moon" aria-hidden="true"></i>';
-        mobBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-      }
     }
 
     function setTheme(theme) {
@@ -181,11 +171,11 @@
     }
 
     function attachThemeHandlers() {
-      if (sidebarThemeToggle) {
-        sidebarThemeToggle.onclick = function () {
+      getThemeToggles().forEach(function (button) {
+        button.onclick = function () {
           setTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
         };
-      }
+      });
     }
 
     setTheme(defaultTheme);
