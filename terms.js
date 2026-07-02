@@ -87,7 +87,7 @@ function openCitationsModal(){
       <div class="citations-card">
         <p class="citations-entry"><strong>Title:</strong> Legal Latin Maxims Relevant to Obligations and Contracts</p>
         <p class="citations-entry"><strong>Coverage:</strong> ObliCon — Civil Law Latin Terminology</p>
-               <a class="citations-download" href="./525126907-Legal-20Latin-20Maxims-20Relevant-20to-20ObliCon.docx" download>
+                       <a class="citations-download" href="./525126907-Legal-20Latin-20Maxims-20Relevant-20to-20ObliCon.docx" download>
           <i class="ti ti-download"></i> Download Docx
         </a>
       </div>
