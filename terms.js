@@ -1,13 +1,14 @@
 var activeCategory = 'All';
 var expanded = null;
-var CATS = ['All', 'Auditing', 'Financial Accounting and Reporting', 'Management Accounting and Control', 'Law', 'Tax'];
+var CATS = ['All', 'Auditing', 'Financial Accounting and Reporting', 'Management Accounting and Control', 'Law', 'Tax', 'Latin Maxims'];
 var DOTS = {
   All: 'dot-all',
   Auditing: 'dot-auditing',
   'Financial Accounting and Reporting': 'dot-far',
   'Management Accounting and Control': 'dot-mac',
   Law: 'dot-law',
-  Tax: 'dot-tax'
+  Tax: 'dot-tax',
+  'Latin Maxims': 'dot-latin'
 };
  
 var currentSuggestions = [];
@@ -40,13 +41,80 @@ function sidebarHTML(showSearch){
 </button>`;
   });
   html += '</div><hr class="sidebar-divider"/>';
+  html += '<p class="section-label">Source</p><div class="filter-btns">';
+  html += '<button type="button" class="filter-btn citation-btn" onclick="openCitationsModal()" title="View all citations">';
+  html += '<span class="dot dot-latin" aria-hidden="true"></span>';
+  html += 'Citations &amp; Credits';
+  html += '<i class="ti ti-info-circle citation-dl-icon" aria-hidden="true"></i>';
+  html += '</button>';
+  html += '</div>';
+  html += '<hr class="sidebar-divider"/>';
   return html;
+}
+
+function openCitationsModal(){
+  var existing = document.getElementById('citations-modal');
+  if(existing) existing.remove();
+
+  var overlay = document.createElement('div');
+  overlay.id = 'citations-modal';
+  overlay.className = 'citations-overlay';
+  overlay.innerHTML = `
+    <div class="citations-dialog" role="dialog" aria-modal="true" aria-label="Citations and Credits">
+      <button class="citations-close" onclick="closeCitationsModal()" aria-label="Close"><i class="ti ti-x"></i></button>
+      <h2 class="citations-title"><i class="ti ti-book-2"></i> Citations &amp; Credits</h2>
+      <hr class="citations-rule"/>
+
+      <p class="citations-section-label">Primary Source</p>
+      <div class="citations-card">
+        <p class="citations-entry"><strong>Author:</strong> iCPA (Interactive CPA Review)</p>
+        <p class="citations-entry"><strong>Title:</strong> Accounting Dictionary</p>
+        <p class="citations-entry"><strong>Format:</strong> PDF Reference Material</p>
+        <a class="citations-download" href="./Accounting_Dictionary.pdf" download>
+          <i class="ti ti-download"></i> Download PDF
+        </a>
+      </div>
+
+      <p class="citations-section-label" style="margin-top:1.1rem">Latin Maxims Source</p>
+      <div class="citations-card">
+        <p class="citations-entry"><strong>Title:</strong> Legal Latin Maxims Relevant to Obligations and Contracts</p>
+        <p class="citations-entry"><strong>Coverage:</strong> ObliCon — Civil Law Latin Terminology</p>
+      </div>
+
+      <p class="citations-section-label" style="margin-top:1.1rem">Compiled By</p>
+      <div class="citations-card">
+        <p class="citations-entry"><strong>Organization:</strong> TSU JPIA — Junior Philippine Institute of Accountants</p>
+        <p class="citations-entry"><strong>Department:</strong> Academics Department</p>
+        <p class="citations-entry"><strong>Federation:</strong> Illyrthion Federation</p>
+        <p class="citations-entry"><strong>Academic Year:</strong> 2026&ndash;2027</p>
+      </div>
+
+      <p class="citations-section-label" style="margin-top:1.1rem">App</p>
+      <div class="citations-card">
+        <p class="citations-entry"><strong>Name:</strong> CPALexicon</p>
+        <p class="citations-entry"><strong>Purpose:</strong> Accounting Dictionary for TSU JPIA Members</p>
+        <p class="citations-entry"><strong>Institution:</strong> Tarlac State University</p>
+      </div>
+    </div>`;
+
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeCitationsModal(); });
+  document.body.appendChild(overlay);
+  requestAnimationFrame(function(){ overlay.classList.add('open'); });
+}
+
+function closeCitationsModal(){
+  var overlay = document.getElementById('citations-modal');
+  if(!overlay) return;
+  overlay.classList.remove('open');
+  setTimeout(function(){ if(overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 250);
 }
  
 function renderSidebars(){
   document.getElementById('sidebar-inner').innerHTML = sidebarHTML(true);
   document.getElementById('drawer-content').innerHTML = sidebarHTML(false);
   attachSearchHandlers();
+  if(typeof attachThemeHandlers === 'function') attachThemeHandlers();
+  if(typeof updateThemeButtons === 'function') updateThemeButtons(document.body.classList.contains('dark') ? 'dark' : 'light');
 }
  
 function setCategory(c){ activeCategory=c; renderSidebars(); render(); }
