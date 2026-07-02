@@ -402,6 +402,37 @@
       .drawer,.drawer-overlay{display:none!important}
       .banner{height:clamp(180px,22vw,300px);position:relative;overflow:hidden}
       .banner img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:top center}
+
+      /* Readability pass — desktop text was too small */
+      .term-name{font-size:17px}
+      .term-snippet{font-size:13.5px;margin-top:3px}
+      .term-initial{width:40px;height:40px;font-size:19px}
+      .definition{font-size:16px;line-height:1.8}
+      .badge{font-size:12.5px;padding:4px 12px}
+      .chevron{font-size:18px}
+      .term-header{padding:1.1rem 1.3rem;gap:16px}
+      .term-body{padding:0 1.3rem 1.2rem calc(1.3rem + 40px + 16px)}
+      .example-block p{font-size:14px}
+      .ex-label{font-size:11px}
+
+      .stats-text{font-size:14.5px}
+      .sort-select{font-size:13.5px;padding:8px 12px}
+
+      .sidebar-title{font-size:19px}
+      .org-tag{font-size:11px}
+      .section-label{font-size:11px}
+      .filter-btn{font-size:14.5px;padding:9px 12px}
+      .fcount{font-size:12px}
+      #search{font-size:14.5px;padding:11px 12px 11px 36px}
+      .search-wrap i{font-size:16px}
+      .suggestion-item{font-size:14px}
+      .theme-label{font-size:15px}
+
+      .citations-entry{font-size:14.5px;line-height:1.7}
+      .citations-title{font-size:20px}
+      .citation-text{font-size:13px}
+
+      footer{font-size:13.5px}
     }
 
     @media(min-width:1200px){
