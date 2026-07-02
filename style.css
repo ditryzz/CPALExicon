@@ -311,64 +311,80 @@
     .install-hint{position:fixed;right:1rem;top:4.5rem;z-index:1200;background:var(--white);color:var(--ink);border:1px solid var(--border);padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(15,28,46,.12);max-width:320px}
     .install-hint p{margin:0;font-size:13px}
 
-    /* MOBILE */
-    .mob-bar{display:none;position:sticky;top:0;z-index:100;background:rgba(15,28,46,.96);padding:12px 1rem;align-items:center;gap:10px;backdrop-filter:blur(10px);box-shadow:0 12px 28px rgba(0,0,0,.15)}
+    /* MOBILE NAV BAR */
+    .mob-bar{display:none;position:sticky;top:0;z-index:100;background:rgba(15,28,46,.97);padding:10px 1rem;align-items:center;gap:10px;backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(0,0,0,.2)}
     .mob-sw{position:relative;flex:1}
-    .mob-sw i{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--input-placeholder);font-size:14px;pointer-events:none}
-    #mob-search{width:100%;padding:8px 8px 8px 30px;font-size:14px;font-family:var(--font-b);background:var(--input-bg);border:1px solid var(--input-border);border-radius:var(--r);color:var(--input-text);outline:none}
-    #mob-search::placeholder{color:var(--input-placeholder)}
-    .mob-sw .suggestions{position:absolute;left:0;top:calc(100% + 8px);width:100%;box-sizing:border-box;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:var(--r);box-shadow:0 14px 40px rgba(15,28,46,.12);z-index:10;display:none;max-height:220px;overflow:auto;padding:5px 0}
-    .mob-filter-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);color:#fff;padding:8px 12px;font-size:13px;font-family:var(--font-b);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
-    .drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200}
+    .mob-sw i{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:14px;pointer-events:none}
+    #mob-search{width:100%;padding:9px 9px 9px 32px;font-size:14px;font-family:var(--font-b);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--r);color:#fff;outline:none;transition:border-color var(--tr)}
+    #mob-search::placeholder{color:rgba(255,255,255,.35)}
+    #mob-search:focus{border-color:var(--gold)}
+    .mob-sw .suggestions{position:absolute;left:0;top:calc(100% + 6px);width:100%;box-sizing:border-box;border-radius:var(--r);box-shadow:0 14px 40px rgba(15,28,46,.18);z-index:10;display:none;max-height:220px;overflow:auto;padding:5px 0}
+    .mob-filter-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);color:#fff;padding:9px 13px;font-size:13px;font-family:var(--font-b);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;font-weight:600;transition:background var(--tr)}
+    .mob-filter-btn:hover{background:rgba(255,255,255,.16)}
+
+    /* DRAWER */
+    .drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;backdrop-filter:blur(2px)}
     .drawer-overlay.open{display:block}
-    .drawer{position:fixed;top:0;left:-300px;bottom:0;width:290px;background:var(--navy);z-index:300;padding:1.25rem;overflow-y:auto;transition:left .25s ease}
+    .drawer{position:fixed;top:0;left:-310px;bottom:0;width:300px;background:var(--navy);z-index:300;overflow-y:auto;transition:left .28s cubic-bezier(.4,0,.2,1);box-shadow:6px 0 40px rgba(0,0,0,.3)}
     .drawer.open{left:0}
-    .drawer-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;margin-bottom:1rem;display:block}
+    .drawer-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:flex-end;width:100%;padding:1rem 1rem .25rem;transition:color var(--tr)}
+    .drawer-close:hover{color:rgba(255,255,255,.9)}
+    .drawer #drawer-content{padding:.25rem 1rem 1.5rem}
+    .drawer .sidebar-card{background:transparent;border:none;box-shadow:none;padding:.5rem 0;backdrop-filter:none}
+    .drawer .org-tag{color:var(--gold)}
+    .drawer .dept-tag{color:rgba(255,255,255,.45)}
+    .drawer .sidebar-title{color:#fff}
+    .drawer .section-label{color:rgba(255,255,255,.45)}
+    .drawer .sidebar-divider{border-top-color:rgba(255,255,255,.1)}
+    .drawer .filter-btn{color:rgba(255,255,255,.8)}
+    .drawer .filter-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+    .drawer .filter-btn.active{background:rgba(201,168,76,.2);color:#f7e5af}
+    .drawer .fcount{color:rgba(255,255,255,.35)}
+    .drawer .citation-btn{color:rgba(255,255,255,.8)}
+    .drawer .search-wrap{margin-bottom:.75rem}
+    .drawer #search{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#fff}
+    .drawer #search::placeholder{color:rgba(255,255,255,.3)}
+    .drawer #search:focus{border-color:var(--gold)}
+    .drawer .search-wrap i{color:rgba(255,255,255,.35)}
+    .drawer .suggestions{background:#111b2c;border-color:rgba(255,255,255,.1)}
+    .drawer .suggestion-item{color:#e8ecf3}
+    .drawer .suggestion-item:hover,.drawer .suggestion-item.active{background:rgba(255,255,255,.08)}
+    .drawer .sidebar-theme-toggle{color:#f7e5af}
+    .drawer .dot-all{background:rgba(255,255,255,.35)}
 
     @media(max-width:700px){
-      /* Hide the old mobile nav bar and drawer — sidebar is now always visible */
-      .mob-bar{display:none}
-      .drawer,.drawer-overlay{display:none!important}
+      .sidebar{display:none}
+      .mob-bar{display:flex}
+      .page{grid-template-columns:1fr;padding:.75rem .75rem 3rem;gap:.85rem}
 
-      /* Stack sidebar above content */
-      .page{grid-template-columns:1fr;padding:.75rem .75rem 3rem;gap:1rem}
+      /* Banner — natural height, rounded corners */
+      .banner{height:auto;overflow:visible;background:transparent;margin-bottom:.5rem;border-radius:16px;box-shadow:0 8px 30px rgba(15,28,46,.15)}
+      .banner img{position:static;inset:auto;width:100%;height:auto;display:block;object-fit:contain;border-radius:16px}
 
-      /* Sidebar: full width, not sticky on mobile, natural height */
-      .sidebar{position:static;max-height:none;overflow:visible}
-      .sidebar-card{padding:1.1rem}
-
-      /* Banner: use the img element (same as desktop) */
-      .banner{height:auto;overflow:visible;background:var(--navy);margin-bottom:.75rem;border-radius:14px}
-      .banner img{position:static;inset:auto;width:100%;height:auto;display:block;object-fit:contain;object-position:top center;border-radius:14px}
-
-      /* Install button */
-      .install-btn{top:auto;bottom:.85rem;right:.85rem;padding:.72rem .95rem}
-
-      /* Term cards */
-      .term-header{display:flex;align-items:flex-start;gap:8px;padding:.8rem .9rem;flex-wrap:nowrap}
-      .term-initial{width:32px;height:32px;font-size:16px;flex-shrink:0}
+      /* Term cards — clean, matching desktop */
+      .term-header{display:flex;align-items:center;gap:10px;padding:.75rem .9rem;flex-wrap:nowrap}
+      .term-initial{width:34px;height:34px;font-size:16px;flex-shrink:0}
       .term-info{flex:1 1 auto;min-width:0}
-      .term-right{display:flex;align-items:center;gap:6px;flex-shrink:0;margin-left:auto}
-      .term-name{overflow-wrap:anywhere;word-break:break-word;font-size:14px}
-      .term-snippet{display:block;font-size:11.5px}
+      .term-name{font-size:14px;overflow-wrap:anywhere;word-break:break-word}
+      .term-snippet{display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .term-right{display:flex;align-items:center;gap:6px;flex-shrink:0;margin-left:auto;padding-left:6px}
       .term-body{padding-left:.9rem;padding-right:.9rem}
       .badge{font-size:10px;padding:3px 7px;white-space:nowrap}
+      .install-btn{top:auto;bottom:.85rem;right:.85rem;padding:.72rem .95rem}
+      .citations-dialog{max-width:100%;border-radius:14px}
     }
+
     @media(min-width:701px){
       .mob-bar{display:none}
       .drawer,.drawer-overlay{display:none!important}
-      /* Ensure banner image covers the area and aligns to top center on wider screens */
       .banner{height:clamp(180px,22vw,300px);position:relative;overflow:hidden}
       .banner img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:top center}
     }
 
-    /* Larger desktop screens: increase banner height and ensure top aligns */
     @media(min-width:1200px){
-      /* On very wide screens show the full banner image using its natural height */
       .banner{height:auto;overflow:visible;background:var(--navy);margin-bottom:1.25rem}
       .banner img{position:static;inset:auto;width:100%;height:auto;display:block;object-fit:contain;object-position:top center}
     }
 
-    /* Ensure term cards sit above banner and have breathing room */
     .term-card{position:relative;z-index:2}
     .term-right{padding-left:10px}

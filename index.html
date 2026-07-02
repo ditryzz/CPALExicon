@@ -81,7 +81,7 @@
     </main>
   </div>
 
-  <footer>TSU JPIA |&nbsp; Illyrthion Federation Academic Year 2026&ndash;2027 |&nbsp; Academics Department</footer>
+  <footer>TSU JPIA |&nbsp; Illyrthion Federation Academic Year 2026&ndash;2027</footer>
 
   <script src="./terms-data.js"></script>
   <script src="./terms.js"></script>
@@ -145,7 +145,8 @@
     }
 
     const storedTheme = localStorage.getItem('theme');
-    const defaultTheme = storedTheme || 'light';
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const defaultTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
     const sidebarThemeToggle = document.getElementById('sidebar-theme-toggle');
 
     function getThemeToggles() {
