@@ -57,7 +57,7 @@ function sidebarHTML(showSearch, includeThemeToggle){
     type="button"
     class="filter-btn favorites-btn ${activeCategory === 'Favorites' ? 'active' : ''}"
     onclick="setCategory('Favorites')">
-    <i class="ti ti-star-filled fav-star-icon" aria-hidden="true"></i>
+    <span class="fav-star-icon" aria-hidden="true">&#9733;</span>
     Favorites
     <span class="fcount">${favorites.size}</span>
 </button>`;
@@ -332,7 +332,7 @@ function render(){
     var esc = t.term.replace(/'/g,"\\'");
     return '<div class="term-card '+(isOpen?'expanded':'')+'" role="listitem">'+
       '<button type="button" class="fav-btn fav-btn-corner '+(isFav?'is-fav':'')+'" onclick="event.stopPropagation();toggleFavorite(\'' + esc + '\')" aria-label="'+(isFav?'Remove from favorites':'Add to favorites')+'" aria-pressed="'+isFav+'">'+
-      '<i class="ti '+(isFav?'ti-star-filled':'ti-star')+'" aria-hidden="true"></i></button>'+
+      '<span class="fav-star-glyph" aria-hidden="true">'+(isFav?'&#9733;':'&#9734;')+'</span></button>'+
       '<div class="term-header" onclick="toggle(\'' + esc + '\');closeDrawer()" tabindex="0" aria-expanded="'+isOpen+'" onkeydown="if(event.key===\'Enter\' || event.key===\' \'){event.preventDefault();toggle(\'' + esc + '\');}">'+
       '<div class="term-initial" aria-hidden="true">'+t.term.charAt(0)+'</div>'+
       '<div class="term-info"><div class="term-name">'+hl(t.term,q)+'</div>'+
