@@ -137,9 +137,7 @@
     }
 
     const storedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isMobileViewport = window.innerWidth <= 700;
-    const defaultTheme = storedTheme || (isMobileViewport ? 'dark' : (systemPrefersDark ? 'dark' : 'light'));
+    const defaultTheme = storedTheme || 'dark';
 
     function getThemeToggles() {
       return document.querySelectorAll('.theme-toggle');
