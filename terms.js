@@ -310,6 +310,10 @@ function hl(text,q){
   return text.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
 }
  
+function escapeAttr(str){
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 function render(){
   var q = getQuery();
   var sort = document.getElementById('sort-select').value;
@@ -334,7 +338,8 @@ function render(){
     var isFav = isFavorite(t.term);
     var snippet = t.definition.length>80 ? t.definition.slice(0,80)+'\u2026' : t.definition;
     var esc = t.term.replace(/'/g,"\\'");
-    return '<div class="term-card '+(isOpen?'expanded':'')+'" role="listitem">'+
+    var attrTerm = escapeAttr(t.term);
+    return '<div class="term-card '+(isOpen?'expanded':'')+'" data-term="'+attrTerm+'" role="listitem">'+
       '<button type="button" class="fav-btn fav-btn-corner '+(isFav?'is-fav':'')+'" onclick="event.stopPropagation();toggleFavorite(\'' + esc + '\')" aria-label="'+(isFav?'Remove from favorites':'Add to favorites')+'" aria-pressed="'+isFav+'">'+
       '<span class="fav-star-glyph" aria-hidden="true">'+(isFav?'&#9733;':'&#9734;')+'</span></button>'+
       '<div class="term-header" onclick="toggle(\'' + esc + '\');closeDrawer()" tabindex="0" aria-expanded="'+isOpen+'" onkeydown="if(event.key===\'Enter\' || event.key===\' \'){event.preventDefault();toggle(\'' + esc + '\');}">'+
@@ -344,13 +349,46 @@ function render(){
       '<div class="term-right">'+
       '<span class="badge '+('badge-'+slugify(t.category))+'">'+badgeLabel(t.category)+'</span>'+ 
       '<i class="ti ti-chevron-down chevron '+(isOpen?'open':'')+'" aria-hidden="true"></i></div></div>'+
-      '<div class="term-body '+(isOpen?'show':'')+'"><hr class="term-divider"/>'+
+      '<div class="term-body '+(isOpen?'show':'')+'"><div class="term-body-inner"><hr class="term-divider"/>'+
       '<p class="definition">'+hl(t.definition,q)+'</p>'+      
-      '</div></div>';
+      '</div></div></div>';
   }).join('');
 }
- 
-function toggle(term){ expanded=expanded===term?null:term; render(); }
+
+function findCardEl(term){
+  var cards = document.querySelectorAll('.term-card');
+  for(var i=0;i<cards.length;i++){
+    if(cards[i].dataset.term === term) return cards[i];
+  }
+  return null;
+}
+
+function setCardExpanded(term, isOpen){
+  var card = findCardEl(term);
+  if(!card) return;
+  var t = allTerms.find(function(x){ return x.term === term; });
+  if(!t) return;
+  var q = getQuery();
+  var header = card.querySelector('.term-header');
+  var body = card.querySelector('.term-body');
+  var chevron = card.querySelector('.chevron');
+  var snippetEl = card.querySelector('.term-snippet');
+  card.classList.toggle('expanded', isOpen);
+  if(header) header.setAttribute('aria-expanded', isOpen);
+  if(body) body.classList.toggle('show', isOpen);
+  if(chevron) chevron.classList.toggle('open', isOpen);
+  if(snippetEl){
+    var snippet = t.definition.length>80 ? t.definition.slice(0,80)+'\u2026' : t.definition;
+    snippetEl.innerHTML = isOpen ? '' : hl(snippet,q);
+  }
+}
+
+function toggle(term){
+  var prev = expanded;
+  expanded = expanded===term ? null : term;
+  if(prev && prev !== term) setCardExpanded(prev, false);
+  setCardExpanded(term, expanded===term);
+}
 
 renderSidebars();
 render();
