@@ -328,7 +328,7 @@
     .badge{font-size:11px;font-weight:600;letter-spacing:.02em;padding:3px 10px;border-radius:20px;border:1px solid transparent}
     .badge-auditing{background:var(--finance-bg);color:var(--finance-text);border-color:var(--finance-bdr)}
     .badge-financial-accounting-and-reporting{background:var(--legal-bg);color:var(--legal-text);border-color:var(--legal-bdr)}
-    .badge-management-accounting-and-control{background:var(--both-bg);color:var(--both-text);border-color:var(--both-bdr)}
+    .badge-management-advisory-services{background:var(--both-bg);color:var(--both-text);border-color:var(--both-bdr)}
     .badge-law{background:#fce7d6;color:#873800;border-color:#fcd7b6}
     .badge-tax{background:#d6f5d6;color:#1d6b1d;border-color:#b5dfb5}
     .badge-latin-maxims{background:#ede9fe;color:#5b21b6;border-color:#ddd6fe}
