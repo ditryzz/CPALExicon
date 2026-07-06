@@ -15,6 +15,25 @@ var BADGE_LABEL = {
   'Management Accounting and Control': 'MAS'
 };
 function badgeLabel(category){ return BADGE_LABEL[category] || category; }
+
+var FAVORITES_KEY = 'cpalexicon-favorites';
+var favorites = new Set();
+try {
+  favorites = new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]'));
+} catch(e) { favorites = new Set(); }
+
+function isFavorite(term){ return favorites.has(term); }
+
+function saveFavorites(){
+  try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(Array.from(favorites))); } catch(e) {}
+}
+
+function toggleFavorite(term){
+  if(favorites.has(term)) favorites.delete(term); else favorites.add(term);
+  saveFavorites();
+  renderSidebars();
+  render();
+}
  
 var currentSuggestions = [];
 var currentSuggestionIndex = -1;
@@ -32,6 +51,17 @@ function sidebarHTML(showSearch, includeThemeToggle){
     html += '<input type="text" id="search" class="search-input" placeholder="Search terms..." autocomplete="off" oninput="render(); updateSearchSuggestions(this.value)" />';
     html += '<div class="suggestions" id="search-suggestions" aria-live="polite"></div></div>';
   }
+  html += '<p class="section-label">Favorites</p><div class="filter-btns">';
+  html += `
+<button
+    type="button"
+    class="filter-btn favorites-btn ${activeCategory === 'Favorites' ? 'active' : ''}"
+    onclick="setCategory('Favorites')">
+    <i class="ti ti-star-filled fav-star-icon" aria-hidden="true"></i>
+    Favorites
+    <span class="fcount">${favorites.size}</span>
+</button>`;
+  html += '</div><hr class="sidebar-divider"/>';
   html += '<p class="section-label">Category</p><div class="filter-btns">';
   CATS.forEach(function(c){
     html += `
@@ -280,7 +310,7 @@ function render(){
   var q = getQuery();
   var sort = document.getElementById('sort-select').value;
   var filtered = allTerms.filter(function(t){
-    var mc = activeCategory==='All'||t.category===activeCategory;
+    var mc = activeCategory==='All' ? true : (activeCategory==='Favorites' ? isFavorite(t.term) : t.category===activeCategory);
     var mq = !q||t.term.toLowerCase().indexOf(q)>=0;
     return mc&&mq;
   });
@@ -290,11 +320,14 @@ function render(){
   document.getElementById('stats').textContent = filtered.length===allTerms.length ? allTerms.length+' terms' : filtered.length+' of '+allTerms.length+' terms';
   var list = document.getElementById('terms-list');
   if(!filtered.length){
-    list.innerHTML='<div class="no-results"><i class="ti ti-search-off" aria-hidden="true"></i><p>No terms match your search.</p></div>';
+    list.innerHTML = activeCategory==='Favorites'
+      ? '<div class="no-results"><i class="ti ti-star" aria-hidden="true"></i><p>No favorites yet. Tap the star on any term to save it here.</p></div>'
+      : '<div class="no-results"><i class="ti ti-search-off" aria-hidden="true"></i><p>No terms match your search.</p></div>';
     return;
   }
   list.innerHTML = filtered.map(function(t){
     var isOpen = expanded===t.term;
+    var isFav = isFavorite(t.term);
     var snippet = t.definition.length>80 ? t.definition.slice(0,80)+'\u2026' : t.definition;
     var esc = t.term.replace(/'/g,"\\'");
     return '<div class="term-card '+(isOpen?'expanded':'')+'" role="listitem">'+
@@ -302,7 +335,10 @@ function render(){
       '<div class="term-initial" aria-hidden="true">'+t.term.charAt(0)+'</div>'+
       '<div class="term-info"><div class="term-name">'+hl(t.term,q)+'</div>'+
       '<div class="term-snippet">'+(isOpen?'':hl(snippet,q))+'</div></div>'+
-      '<div class="term-right"><span class="badge '+('badge-'+slugify(t.category))+'">'+badgeLabel(t.category)+'</span>'+ 
+      '<div class="term-right">'+
+      '<button type="button" class="fav-btn '+(isFav?'is-fav':'')+'" onclick="event.stopPropagation();toggleFavorite(\'' + esc + '\')" aria-label="'+(isFav?'Remove from favorites':'Add to favorites')+'" aria-pressed="'+isFav+'">'+
+      '<i class="ti '+(isFav?'ti-star-filled':'ti-star')+'" aria-hidden="true"></i></button>'+
+      '<span class="badge '+('badge-'+slugify(t.category))+'">'+badgeLabel(t.category)+'</span>'+ 
       '<i class="ti ti-chevron-down chevron '+(isOpen?'open':'')+'" aria-hidden="true"></i></div></div>'+
       '<div class="term-body '+(isOpen?'show':'')+'"><hr class="term-divider"/>'+
       '<p class="definition">'+hl(t.definition,q)+'</p>'+      
