@@ -15,10 +15,10 @@
   <meta name="theme-color" content="#0f1c2e" />
   <link rel="stylesheet" href="./style.css" />
 
- <meta property="og:title" content="CPALexicon" />
+ <meta property="og:title" content="CPALExicon" />
   <meta property="og:description" content="An Accounting Dictionary for TSU - JPIA students" />
   <meta property="og:image" content="app-preview.jpg" />
-  <meta property="og:type" content="https://ditryzz.github.io/CPALexicon/" />
+  <meta property="og:type" content="https://ditryzz.github.io/CPALExicon/" />
    <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="640" />
@@ -26,14 +26,14 @@
 <body>
   <button id="install-btn" class="install-btn" hidden>Install App</button>
   <div id="install-hint" class="install-hint" hidden>
-    <p id="install-hint-text">To install this app on desktop: open your browser menu and choose "Install CPALexicon" (Chrome/Edge) or use the "Install app" option near the address bar.</p>
+    <p id="install-hint-text">To install this app on desktop: open your browser menu and choose "Install CPALExicon" (Chrome/Edge) or use the "Install app" option near the address bar.</p>
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:.5rem">
       <button onclick="closeInstallHint()" class="btn-add">Close</button>
     </div>
   </div>
 
   <div class="banner">
-    <img src="./TSU_JPIA_ACADS.png" alt="CPALexicon Banner" />
+    <img src="./TSU_JPIA_ACADS.png" alt="CPALExicon Banner" />
   </div>
 
   <div class="mob-bar">
@@ -119,7 +119,7 @@
             if (hint && hintText) {
               var ua = navigator.userAgent.toLowerCase();
               if (ua.indexOf('chrome') >= 0 || ua.indexOf('edg') >= 0) {
-                hintText.textContent = 'Open your browser menu (⋯) and choose "Install CPALexicon" or "Install app".';
+                hintText.textContent = 'Open your browser menu (⋯) and choose "Install CPALExicon" or "Install app".';
               } else if (ua.indexOf('firefox') >= 0) {
                 hintText.textContent = 'Firefox does not support automatic install prompts on desktop; use "Install" from the browser menu or pin the site to your OS.';
               } else {

@@ -1,6 +1,6 @@
 {
-  "name": "CPALexicon",
-  "short_name": "CPALexicon",
+  "name": "CPALExicon",
+  "short_name": "CPALExicon",
   "description": "Accounting Dictionary for TSU JPIA.",
   "start_url": "./index.html",
   "scope": "./",

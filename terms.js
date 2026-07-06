@@ -45,7 +45,7 @@ function slugify(text){
 function countFor(c){ return c==='All'?allTerms.length:allTerms.filter(function(t){return t.category===c}).length; }
  
 function sidebarHTML(showSearch, includeThemeToggle){
-  var html = '<p class="org-tag">TSU JPIA | Illyrthion Federation Academic Year 2026-2027</p><p class="sidebar-title">CPALexicon</p>';
+  var html = '<p class="org-tag">TSU JPIA | Illyrthion Federation Academic Year 2026-2027</p><p class="sidebar-title">CPALExicon</p>';
   if(showSearch){
     html += '<div class="search-wrap"><i class="ti ti-search" aria-hidden="true"></i>';
     html += '<input type="text" id="search" class="search-input" placeholder="Search terms..." autocomplete="off" oninput="render(); updateSearchSuggestions(this.value)" />';
@@ -138,7 +138,7 @@ function openCitationsModal(){
 
       <p class="citations-section-label" style="margin-top:1.1rem">App</p>
       <div class="citations-card">
-        <p class="citations-entry"><strong>Name:</strong> CPALexicon</p>
+        <p class="citations-entry"><strong>Name:</strong> CPALExicon</p>
         <p class="citations-entry"><strong>Purpose:</strong> Accounting Dictionary for TSU JPIA Members</p>
         <p class="citations-entry"><strong>Institution:</strong> Tarlac State University</p>
       </div>
