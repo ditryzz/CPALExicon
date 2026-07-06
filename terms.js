@@ -140,6 +140,7 @@ function openCitationsModal(){
       </div>
 
       <div class="citations-disclaimer">
+        <p class="citations-disclaimer-label"><i class="ti ti-shield-check" aria-hidden="true"></i> Fair Use &amp; Attribution</p>
         <p>This app compiles accounting and legal terms for educational purposes only, with credit given to the original authors and publishers above. The compilers claim no ownership or copyright over the source material — all rights remain with the respective original authors and organizations. Any unintentional oversight in attribution will be corrected upon notice.</p>
       </div>
     </div>`;
