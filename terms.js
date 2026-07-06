@@ -331,13 +331,13 @@ function render(){
     var snippet = t.definition.length>80 ? t.definition.slice(0,80)+'\u2026' : t.definition;
     var esc = t.term.replace(/'/g,"\\'");
     return '<div class="term-card '+(isOpen?'expanded':'')+'" role="listitem">'+
+      '<button type="button" class="fav-btn fav-btn-corner '+(isFav?'is-fav':'')+'" onclick="event.stopPropagation();toggleFavorite(\'' + esc + '\')" aria-label="'+(isFav?'Remove from favorites':'Add to favorites')+'" aria-pressed="'+isFav+'">'+
+      '<i class="ti '+(isFav?'ti-star-filled':'ti-star')+'" aria-hidden="true"></i></button>'+
       '<div class="term-header" onclick="toggle(\'' + esc + '\');closeDrawer()" tabindex="0" aria-expanded="'+isOpen+'" onkeydown="if(event.key===\'Enter\' || event.key===\' \'){event.preventDefault();toggle(\'' + esc + '\');}">'+
       '<div class="term-initial" aria-hidden="true">'+t.term.charAt(0)+'</div>'+
       '<div class="term-info"><div class="term-name">'+hl(t.term,q)+'</div>'+
       '<div class="term-snippet">'+(isOpen?'':hl(snippet,q))+'</div></div>'+
       '<div class="term-right">'+
-      '<button type="button" class="fav-btn '+(isFav?'is-fav':'')+'" onclick="event.stopPropagation();toggleFavorite(\'' + esc + '\')" aria-label="'+(isFav?'Remove from favorites':'Add to favorites')+'" aria-pressed="'+isFav+'">'+
-      '<i class="ti '+(isFav?'ti-star-filled':'ti-star')+'" aria-hidden="true"></i></button>'+
       '<span class="badge '+('badge-'+slugify(t.category))+'">'+badgeLabel(t.category)+'</span>'+ 
       '<i class="ti ti-chevron-down chevron '+(isOpen?'open':'')+'" aria-hidden="true"></i></div></div>'+
       '<div class="term-body '+(isOpen?'show':'')+'"><hr class="term-divider"/>'+
