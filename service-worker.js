@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cpalexicon-v10';
+const CACHE_NAME = 'cpalexicon-v13';
 const ASSETS = [
   './',
   './index.html',

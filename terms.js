@@ -1,6 +1,6 @@
 var activeCategory = 'All';
 var expanded = null;
-var CATS = ['All', 'Auditing', 'Financial Accounting and Reporting', 'Management Accounting and Control', 'Law', 'Tax', 'Latin Maxims'];
+var CATS = ['All', 'Auditing', 'Financial Accounting and Reporting', 'Management Accounting and Control', 'Law', 'Latin Maxims', 'Tax'];
 var DOTS = {
   All: 'dot-all',
   Auditing: 'dot-auditing',
@@ -137,6 +137,10 @@ function openCitationsModal(){
         <p class="citations-entry"><strong>Name:</strong> CPALexicon</p>
         <p class="citations-entry"><strong>Purpose:</strong> Accounting Dictionary for TSU JPIA Members</p>
         <p class="citations-entry"><strong>Institution:</strong> Tarlac State University</p>
+      </div>
+
+      <div class="citations-disclaimer">
+        <p>This app compiles accounting and legal terms for educational purposes only, with credit given to the original authors and publishers above. The compilers claim no ownership or copyright over the source material — all rights remain with the respective original authors and organizations. Any unintentional oversight in attribution will be corrected upon notice.</p>
       </div>
     </div>`;
 
