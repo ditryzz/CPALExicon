@@ -1,18 +1,18 @@
 var activeCategory = 'All';
 var expanded = null;
-var CATS = ['All', 'Auditing', 'Financial Accounting and Reporting', 'Management Accounting and Control', 'Law', 'Latin Maxims', 'Tax'];
+var CATS = ['All', 'Auditing', 'Financial Accounting and Reporting', 'Management Advisory Services', 'Law', 'Latin Maxims', 'Tax'];
 var DOTS = {
   All: 'dot-all',
   Auditing: 'dot-auditing',
   'Financial Accounting and Reporting': 'dot-far',
-  'Management Accounting and Control': 'dot-mac',
+  'Management Advisory Services': 'dot-mac',
   Law: 'dot-law',
   Tax: 'dot-tax',
   'Latin Maxims': 'dot-latin'
 };
 var BADGE_LABEL = {
   'Financial Accounting and Reporting': 'FAR',
-  'Management Accounting and Control': 'MAS'
+  'Management Advisory Services': 'MAS'
 };
 function badgeLabel(category){ return BADGE_LABEL[category] || category; }
 
